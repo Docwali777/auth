@@ -6,12 +6,29 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const app = express()
 const mongoose = require('mongoose');
 let {Schema} = mongoose
+const mongodb = require('mongodb');
+let{MongoClient} = mongodb
 const PORT = process.env.PORT || 3000
+
 
 const User = require('./models/user');
 
-let db = 'mongodb://password:password@ds151059.mlab.com:51059/yelp' || 'mongodb://localhost/auth_demo'
+let db = 'mongodb://person:person@ds151059.mlab.com:51059/yelp'
+// || 'mongodb://localhost/yelp_camp'
+mongoose.connection.once('connected', ()=>{
+  console.log('connected');
+})
+mongoose.connection.on('error', ()=>{
+  console.log('error');
+})
+// MongoClient.connect(db, (err, mongo)=>{
+//   if('error'){console.log(err);}
+//   else {
+//     console.log(mongo);
+//   }
+// })
 mongoose.connect(db)
+
 
 app.use(require('express-session')({
   secret: 'maya is the greatest',
