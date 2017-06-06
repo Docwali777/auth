@@ -15,19 +15,19 @@ const User = require('./models/user');
 
 let db = 'mongodb://person:person@ds151059.mlab.com:51059/yelp'
 // || 'mongodb://localhost/yelp_camp'
-mongoose.connection.once('connected', ()=>{
-  console.log('connected');
-})
-mongoose.connection.on('error', ()=>{
-  console.log('error');
-})
-// MongoClient.connect(db, (err, mongo)=>{
-//   if('error'){console.log(err);}
-//   else {
-//     console.log(mongo);
-//   }
+// mongoose.connection.once('connected', ()=>{
+//   console.log('connected');
 // })
-mongoose.connect(db)
+// mongoose.connection.on('error', ()=>{
+//   console.log('error');
+// })
+MongoClient.connect(db, (err, database)=>{
+  if('error'){console.log(err);}
+
+    console.log(database);
+
+})
+// mongoose.connect(db)
 
 
 app.use(require('express-session')({
