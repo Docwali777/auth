@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 3000
 
 const User = require('./models/user');
 
-
-mongoose.connect('mongodb://localhost/auth_demo')
+let db = 'mongodb://password:password@ds151059.mlab.com:51059/yelp' || 'mongodb://localhost/auth_demo'
+mongoose.connect(db)
 
 app.use(require('express-session')({
   secret: 'maya is the greatest',
